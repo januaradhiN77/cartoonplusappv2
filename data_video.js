@@ -104,7 +104,9 @@
                 "duration": "1 jam 41m",
                     
        }
-        ]
+        ],
+        "relatedMovies": 
+        ["onepieceliveaction"],
                 
             },
 "mashleseason2": {
@@ -3303,7 +3305,8 @@
 
 
         ],
-                
+        "relatedMovies": 
+        ["onepiecemv14"],
             },
             
 "siksaneraka": {
