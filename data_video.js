@@ -5237,7 +5237,7 @@
        }
         ],
 "relatedMovies": 
-        ["harrypotterthedeathlypt1", "harrypotterprisoner"],
+        ["harrypotterandthedeathlypt1", "harrypotterprisoner"],
 
   "aktor": [
     {
@@ -5530,7 +5530,7 @@
        }
         ],
         "relatedMovies": 
-        ["harrypotterandthehalfblood", "harrypotterthedeathlypt1"],
+        ["harrypotterandthehalfblood", "harrypotterandthedeathlypt1"],
 
   "aktor": [
     {
