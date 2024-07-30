@@ -5236,7 +5236,8 @@
                     
        }
         ],
-
+"relatedMovies": 
+        ["harrypotterthedeathlypt1", "harrypotterprisoner"],
 
   "aktor": [
     {
@@ -5330,7 +5331,8 @@
                     
        }
         ],
-
+"relatedMovies": 
+        ["harrypotterandthehalfblood", "harrypotterprisoner"],
   "aktor": [
     {
       "image aktor": "https://www.gstatic.com/knowledgecard/person-95.png",
@@ -5527,6 +5529,8 @@
                     
        }
         ],
+        "relatedMovies": 
+        ["harrypotterandthehalfblood", "harrypotterthedeathlypt1"],
 
   "aktor": [
     {
