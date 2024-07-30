@@ -656,7 +656,9 @@
                 "duration": "1 jam 36m",
                     
        }
-        ]
+        ],
+        "relatedMovies": 
+        ["doraemonmovie42"],
                 
             },
 "doraemonmovie42": {
@@ -682,7 +684,10 @@
                 "duration": "1 jam 50m",
                     
        }
-        ]
+        ], 
+
+        "relatedMovies": 
+        ["standbymedoraemon2"],
                 
             },
 "arcaneleagueoflegends": {
