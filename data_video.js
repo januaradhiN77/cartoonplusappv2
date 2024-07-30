@@ -5781,6 +5781,8 @@
                     
        }
         ],
+        "relatedMovies": 
+        ["avengersendgame"],
 "aktor":[
     {
         "image aktor": "https://www.gstatic.com/knowledgecard/person-95.png",
@@ -5841,9 +5843,11 @@
                         "episodeUrl": "https://drive.google.com/file/d/1sTDt4FGtkL3HNFVCSvVG4-s4lrl-Ci3k/preview",
                         "duration": "3 jam 01m",
 
-
+                        
        }
         ],
+        "relatedMovies": 
+        ["avengersinfnitywar"],
 "aktor":[
     {
         "image aktor": "https://www.gstatic.com/knowledgecard/person-95.png",
