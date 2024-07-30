@@ -5860,7 +5860,7 @@
        }
         ],
         "relatedMovies": 
-        ["avengersinfnitywar"],
+        ["avengersinfinitywar"],
 "aktor":[
     {
         "image aktor": "https://www.gstatic.com/knowledgecard/person-95.png",
