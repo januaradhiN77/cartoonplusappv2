@@ -281,17 +281,17 @@
           // Ambil parameter animasi dari URL
           const urlParams = new URLSearchParams(window.location.search);
           const animation = urlParams.get('animation');
-
+      
           // Ambil data film dari data_video.js
           const filmData = data[animation];
-
+      
           // Simpan informasi film terakhir yang ditonton di localStorage
           localStorage.setItem('lastWatched', JSON.stringify({
             title: filmData.title,
             img: filmData.bgimg,
             animation: animation
           }));
-
+      
           // Tambahkan event listener untuk tombol favorit
           const favoriteButton = document.getElementById('favoriteButton');
           const favoriteData = {
@@ -308,22 +308,22 @@
             description: filmData.description,
             trailer: filmData.trailer
           };
-
+      
           // Check apakah film sudah di dalam daftar favorit
           let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
           let isFavorited = favorites.some(fav => fav.url === window.location.href);
-
+      
           // Update tampilan tombol berdasarkan status favorit
           if (isFavorited) {
             favoriteButton.classList.add('favorited');
             favoriteButton.querySelector('span').classList.replace('mdi-bookmark-outline', 'mdi-bookmark');
           }
-
+      
           // Tambahkan event listener untuk tombol favorit
           favoriteButton.addEventListener('click', function () {
             let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
             let isFavorited = favorites.some(fav => fav.url === window.location.href);
-
+      
             if (isFavorited) {
               // Hapus dari daftar favorit
               favorites = favorites.filter(fav => fav.url !== window.location.href);
@@ -340,29 +340,48 @@
               alert('Ditambahkan ke Favorit');
             }
           });
-
+      
+          // Tambahkan event listener untuk tombol urut episode
+          const sortButton = document.getElementById('sortButton');
+          sortButton.addEventListener('click', function () {
+            sortEpisodes(filmData.episodes);
+          });
+      
           // Tambahkan kode untuk menampilkan episode
           displayEpisodes(filmData.episodes);
-
+      
           // Tampilkan film terkait
           displayRelatedMovies(filmData.relatedMovies);
         });
-
+      
+        let isAscending = true; // Untuk melacak urutan episode saat ini
+      
+        function sortEpisodes(episodes) {
+          // Balik urutan episode
+          episodes.reverse();
+          isAscending = !isAscending; // Ubah status urutan
+      
+          // Hapus episode yang ada
+          const episodeContainer = document.getElementById("episodeContainer");
+          episodeContainer.innerHTML = '';
+      
+          // Tambahkan episode yang sudah diurutkan
+          displayEpisodes(episodes);
+        }
+      
         // Fungsi untuk menampilkan episode
         function displayEpisodes(episodes) {
           const episodeContainer = document.getElementById("episodeContainer");
           episodeContainer.innerHTML = ''; // Kosongkan kontainer episode sebelum menambahkan yang baru
-
-          let episodeButtons = []; // Array untuk menyimpan tombol episode
-
-          episodes.forEach((episode, index) => {
+      
+          episodes.forEach((episode) => {
             const episodeButton = document.createElement("button");
             const iconElement = document.createElement("span");
             iconElement.classList.add("mdi", "mdi-play-circle");
             iconElement.style.fontSize = "30px";
-
+      
             episodeButton.textContent = episode.episodeTitle;
-
+      
             episodeButton.addEventListener("click", function () {
               const episodeUrl = encodeURIComponent(episode.episodeUrl);
               const episodeJudul = encodeURIComponent(episode.episodeJudul);
@@ -372,13 +391,13 @@
               const episodeStudio = encodeURIComponent(data[animation].studio);
               const episodeBintang = encodeURIComponent(data[animation].rating);
               const episodeDurasi = encodeURIComponent(episode.duration);
-
+      
               // Simpan riwayat tontonan ke localStorage
               let history = JSON.parse(localStorage.getItem('watchHistory')) || [];
               history.push({
                 title: episode.episodeJudul,
                 img: data[animation].bgimg,
-                durasi: duration,
+                durasi: episode.duration,
                 studio: data[animation].studio,
                 animation: animation,
                 bintang: data[animation].rating,
@@ -386,30 +405,25 @@
                 episode: episode.episodeTitle
               });
               localStorage.setItem('watchHistory', JSON.stringify(history));
-
+      
               window.location.href = `video_testing.html?episodeUrl=${episodeUrl}&episodeJudul=${episodeJudul}&description=${description}&episodeImg=${episodeImg}&episodeTitle=${episodeTitle}&episodeStudio=${episodeStudio}&episodeBintang=${episodeBintang}&episodeDurasi=${episodeDurasi}`;
             });
-
+      
             episodeButton.insertBefore(iconElement, episodeButton.firstChild);
-            episodeButtons.push(episodeButton); 
+            episodeContainer.appendChild(episodeButton); 
           });
-
+      
           const episodeCountElement = document.getElementById("episodeCount");
           episodeCountElement.textContent = `Mulai Menonton (${episodes.length})`;
-
-        
-          episodeButtons.forEach(button => {
-            episodeContainer.appendChild(button);
-          });
         }
-
+      
         function displayRelatedMovies(relatedMovies) {
           const relatedMoviesContainer = document.getElementById("relatedMovies");
           relatedMoviesContainer.innerHTML = '';
           if (relatedMovies.length === 0) {
             const noRelatedMoviesMessage = document.createElement("h1");
             noRelatedMoviesMessage.textContent = "Tidak ada movie terkait";
-
+      
             noRelatedMoviesMessage.style.textAlign = "center"; 
             noRelatedMoviesMessage.style.fontSize = "18px"; 
             noRelatedMoviesMessage.style.color = "#ffffff"; 
@@ -420,53 +434,50 @@
             relatedMovies.forEach(movieKey => {
               if (data.hasOwnProperty(movieKey)) {
                 const movie = data[movieKey];
-
+      
                 const movieButton = document.createElement("button");
                 movieButton.classList.add("buttongoweb");
                 movieButton.addEventListener("click", function () {
                   window.location.href = `videos_detail.html?animation=${movieKey}`;
                 });
-
+      
                 const movieDiv = document.createElement("div");
                 movieDiv.classList.add("data-item");
-
+      
                 const movieBox = document.createElement("div");
                 movieBox.classList.add("movies-box", "skeleton");
-
+      
                 const movieImg = document.createElement("img");
                 movieImg.src = movie.bgimg;
                 movieImg.alt = movie.title;
-
+      
                 const imageOverlay = document.createElement("div");
                 imageOverlay.classList.add("image-overlay");
-
+      
                 const overlay = document.createElement("div");
                 overlay.classList.add("overlay");
-
+      
                 const judulMovies = document.createElement("div");
                 judulMovies.classList.add("judul-movies", "skeleton");
-
+      
                 const movieTitle = document.createElement("h1");
                 movieTitle.textContent = movie.title;
-
+      
                 judulMovies.appendChild(movieTitle);
-
+      
                 movieBox.appendChild(movieImg);
                 movieBox.appendChild(imageOverlay);
                 movieBox.appendChild(overlay);
                 movieBox.appendChild(judulMovies);
-
+      
                 movieDiv.appendChild(movieBox);
-
+      
                 movieButton.appendChild(movieDiv);
                 relatedMoviesContainer.appendChild(movieButton);
               }
             });
           }
         }
-
-        // Pastikan fungsi ini dipanggil dengan data yang sesuai
-        // displayRelatedMovies([]);
       </script>
     </body>
 
