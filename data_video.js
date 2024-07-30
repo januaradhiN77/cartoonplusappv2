@@ -952,7 +952,9 @@
                 "duration": "1 jam 44m",
                     
        }
-        ]
+        ],
+    "relatedMovies": 
+        ["kungfupandathepaws"],
                 
             },
 "kungfupandathepaws": {
@@ -1075,7 +1077,9 @@
 
                 "duration": "23 menit",
         },
-        ]
+        ],
+"relatedMovies": 
+        ["kungfupanda4"],
                 
             },
 
